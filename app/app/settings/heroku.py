@@ -13,5 +13,3 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 DATABASES = {
     "default": env.db(),
 }
-
-CLOUDINARY_STORAGE = env.dict('CLOUDINARY_STORAGE')
