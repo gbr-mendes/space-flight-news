@@ -50,6 +50,8 @@ class Article(models.Model):
     newsSite = models.CharField(max_length=255, blank=True)
     summary = models.CharField(max_length=255, blank=True)
     publishedAt = models.DateTimeField(default=timezone.now)
+    launches = models.ManyToManyField('Launch')
+    events = models.ManyToManyField('Event')
 
     def __str__(self):
         return self.title
@@ -59,7 +61,6 @@ class Launch(models.Model):
     """Model for Lauch table on database"""
     id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     provider = models.CharField(max_length=255)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.provider
@@ -69,7 +70,6 @@ class Event(models.Model):
     """Model for Event table on database"""
     id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     provider = models.CharField(max_length=255)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.provider

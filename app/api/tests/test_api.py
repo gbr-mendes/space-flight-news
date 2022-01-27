@@ -15,12 +15,13 @@ class TestPublicAPIRequest(TestCase):
         self.client = APIClient()
 
         self.article_payload = {
-            'title': 'New Article',
-            'featured': True,
-            'url': 'https://www.gbmsolucoesweb.com',
-            'imageUrl': '',
-            'newsSite': 'Some news',
-            'summary': 'Some summary',
+            "featured": True,
+            "title": "Article one",
+            "url": "https://www.google.com",
+            "newsSite": "Some News",
+            "summary": "Some summary",
+            "launches": [{"provider": "provider name1"},{"provider": "provider name2"}],
+            "events": [{"provider": "provider name1"},{"provider": "provider name2"}]
         }
     
     def retrive_articles_success(self):
@@ -49,9 +50,7 @@ class TestPublicAPIRequest(TestCase):
         
     def test_create_article(self):
         """Test adding an article to database"""
-
-        res = self.client.post(ARTICLES_URL, self.article_payload)
-        print(res.data)
+        res = self.client.post(ARTICLES_URL, self.article_payload, format='json')
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         id = res.data['id']
         exists = models.Article.objects.filter(id=id).exists()
@@ -64,7 +63,8 @@ class TestPublicAPIRequest(TestCase):
             'api:retrive_article',
             kwargs={'pk':article.id}
         )
-        res = self.client.put(RETRIVE_ARTICLE_URL, self.article_payload)
+        res = self.client.put(RETRIVE_ARTICLE_URL, self.article_payload, format='json')
+
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         article.refresh_from_db()
         self.assertEqual(res.data['url'], article.url)
