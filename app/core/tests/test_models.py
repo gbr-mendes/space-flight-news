@@ -48,7 +48,8 @@ class ModelTest(TestCase):
     def test_launch_str(self):
         """Test the launch string representation"""
         launch = models.Launch.objects.create(
-            provider = 'Provider Name'
+            provider = 'Provider Name',
+            article = models.Article.objects.create(title='Article')
         )
 
         self.assertEqual(str(launch), launch.provider)
@@ -56,7 +57,8 @@ class ModelTest(TestCase):
     def test_event_str(self):
         """Test the event string representation"""
         event = models.Event.objects.create(
-            provider = 'Provider Name'
+            provider = 'Provider Name',
+            article = models.Article.objects.create(title='Article')
         )
 
         self.assertEqual(str(event), event.provider)
