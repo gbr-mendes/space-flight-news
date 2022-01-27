@@ -13,6 +13,15 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+import cloudinary
+import cloudinary_storage
+
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -41,6 +50,8 @@ INSTALLED_APPS = [
     # 3td party apps,
     'rest_framework',
     'rest_framework.authtoken',
+    'cloudinary',
+    'cloudinary_storage',
     # Local Apps
     'core.apps.CoreConfig',
     'api.apps.ApiConfig',
@@ -151,3 +162,11 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'core.User'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env('CLOUD_NAME'),
+    'API_KEY': env('API_KEY'),
+    'API_SECRET': env('API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
