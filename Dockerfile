@@ -19,12 +19,6 @@ RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
 
-# Define dirs to media and static files
-RUN mkdir -p /vol/web/media
-RUN mkdir -p /vol/web/static
-
 # Add and switch for a non root user
 RUN adduser -D user
-RUN chown -R user:user /vol/
-RUN chmod -R 755 /vol/web
 USER user
