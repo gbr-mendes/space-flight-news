@@ -1,3 +1,4 @@
+from multiprocessing import Event
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
@@ -26,3 +27,6 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Article)
+admin.site.register(models.Launch)
+admin.site.register(models.Event)

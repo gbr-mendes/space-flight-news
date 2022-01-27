@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+from core import models
 
 class ModelTest(TestCase):
 
@@ -36,3 +37,26 @@ class ModelTest(TestCase):
         )
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+    
+    def test_article_str(self):
+        """Test the article string representation"""
+        article = models.Article.objects.create(
+            title='New article'
+        )
+        self.assertEqual(str(article), article.title)
+
+    def test_launch_str(self):
+        """Test the launch string representation"""
+        launch = models.Launch.objects.create(
+            provider = 'Provider Name'
+        )
+
+        self.assertEqual(str(launch), launch.provider)
+    
+    def test_event_str(self):
+        """Test the event string representation"""
+        event = models.Event.objects.create(
+            provider = 'Provider Name'
+        )
+
+        self.assertEqual(str(event), event.provider)

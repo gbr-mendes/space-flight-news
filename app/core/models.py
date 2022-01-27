@@ -3,7 +3,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
                                                         PermissionsMixin
-
+from django.utils import timezone
 
 class UserManager(BaseUserManager):
 
@@ -38,3 +38,38 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+
+class Article(models.Model):
+    """Model for article table on database"""
+    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    featured = models.BooleanField(default=False)
+    title = models.CharField(max_length=255)
+    url = models.URLField(blank=True, null=True)
+    imageUrl = models.ImageField(blank=True, upload_to='images/%Y/%m')
+    newsSite = models.CharField(max_length=255, blank=True)
+    summary = models.CharField(max_length=255, blank=True)
+    publishedAt = models.DateTimeField(default=timezone.now)
+    launches = models.ManyToManyField('Launch')
+    events = models.ManyToManyField('Event')
+
+    def __str__(self):
+        return self.title
+
+
+class Launch(models.Model):
+    """Model for Lauch table on database"""
+    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    provider = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.provider
+
+
+class Event(models.Model):
+    """Model for Event table on database"""
+    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    provider = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.provider
