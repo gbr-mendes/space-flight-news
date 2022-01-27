@@ -40,13 +40,17 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
 
+def upload_image_article(instance, filename):
+    return f'images/{instance.id}-{filename}'
+
+
 class Article(models.Model):
     """Model for article table on database"""
     id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     featured = models.BooleanField(default=False)
     title = models.CharField(max_length=255)
     url = models.URLField(blank=True, null=True)
-    imageUrl = models.ImageField(blank=True, upload_to='images/%Y/%m', null=True)
+    imageUrl = models.URLField(blank=True, null=True)
     newsSite = models.CharField(max_length=255, blank=True)
     summary = models.CharField(max_length=255, blank=True)
     publishedAt = models.DateTimeField(default=timezone.now)

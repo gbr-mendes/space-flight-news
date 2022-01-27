@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
+from rest_framework.parsers import FileUploadParser, MultiPartParser, JSONParser
 
 from api import serializers
 
@@ -11,6 +12,7 @@ class ArticlesAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.ArticleSerializer
     permission_classes = (AllowAny,)
     queryset = models.Article.objects.all()
+    
 
 
 class ArticleAPIView(generics.RetrieveUpdateDestroyAPIView):
