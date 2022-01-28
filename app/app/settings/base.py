@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'cloudinary',
     'cloudinary_storage',
-    'django_crontab',
     # Local Apps
     'core.apps.CoreConfig',
     'api.apps.ApiConfig',
