@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'cloudinary',
     'cloudinary_storage',
+    'django_crontab',
     # Local Apps
     'core.apps.CoreConfig',
     'api.apps.ApiConfig',
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 # Whitenoise setup
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -150,7 +152,15 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
 }
 
 AUTH_USER_MODEL = 'core.User'
+
+CRONJOBS = [
+    ('*/1 * * * *', 'core.cron.request_articles',f'>> {BASE_DIR}/logfile.log')
+]
+
+CRONTAB_LOCK_JOBS = True

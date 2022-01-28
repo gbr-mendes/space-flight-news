@@ -48,12 +48,13 @@ class Article(models.Model):
     """Model for article table on database"""
     id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     featured = models.BooleanField(default=False)
-    title = models.CharField(max_length=255)
-    url = models.URLField(blank=True, null=True)
-    imageUrl = models.URLField(blank=True, null=True)
-    newsSite = models.CharField(max_length=255, blank=True)
-    summary = models.CharField(max_length=255, blank=True)
+    title = models.TextField()
+    url = models.URLField(max_length=1000)
+    imageUrl = models.URLField(max_length=1000)
+    newsSite = models.TextField()
+    summary = models.TextField()
     publishedAt = models.DateTimeField(default=timezone.now)
+    updatedAt = models.DateTimeField(blank=True, null=True)
     launches = models.ManyToManyField('Launch')
     events = models.ManyToManyField('Event')
 
@@ -64,7 +65,7 @@ class Article(models.Model):
 class Launch(models.Model):
     """Model for Lauch table on database"""
     id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
-    provider = models.CharField(max_length=255)
+    provider = models.TextField()
 
     def __str__(self):
         return self.provider
@@ -73,7 +74,6 @@ class Launch(models.Model):
 class Event(models.Model):
     """Model for Event table on database"""
     id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
-    provider = models.CharField(max_length=255)
-
+    provider = models.TextField()
     def __str__(self):
         return self.provider

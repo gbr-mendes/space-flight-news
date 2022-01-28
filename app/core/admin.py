@@ -1,4 +1,4 @@
-from multiprocessing import Event
+from django.db.models.functions import Greatest
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
@@ -25,8 +25,12 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
+class ArticleAdmin(admin.ModelAdmin):
+    search_fields = ('id',)
+
+
 
 admin.site.register(models.User, UserAdmin)
-admin.site.register(models.Article)
+admin.site.register(models.Article, ArticleAdmin)
 admin.site.register(models.Launch)
 admin.site.register(models.Event)

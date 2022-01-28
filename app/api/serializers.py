@@ -1,4 +1,3 @@
-from fileinput import filename
 from rest_framework import serializers
 
 from core import models
@@ -33,7 +32,7 @@ class ArticleSerializer(serializers.ModelSerializer):
         launches_data = validated_data.pop('launches', None)
         events_data = validated_data.pop('events', None)
         article = models.Article.objects.create(**validated_data)
-        
+
         if launches_data:
             list_launch = []
             for launch in launches_data:

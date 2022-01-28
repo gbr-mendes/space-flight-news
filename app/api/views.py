@@ -11,7 +11,7 @@ class ArticlesAPIView(generics.ListCreateAPIView):
     """Views to articles endpoint"""
     serializer_class = serializers.ArticleSerializer
     permission_classes = (AllowAny,)
-    queryset = models.Article.objects.all()
+    queryset = models.Article.objects.all().order_by('-publishedAt')
     
 
 
