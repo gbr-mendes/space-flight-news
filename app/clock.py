@@ -1,3 +1,8 @@
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings.heroku')
+import django
+django.setup()
+
 from apscheduler.schedulers.blocking import BlockingScheduler
 from core import models
 
