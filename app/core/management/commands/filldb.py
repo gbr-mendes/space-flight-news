@@ -11,8 +11,9 @@ class Command(BaseCommand):
             quant_url = 'https://api.spaceflightnewsapi.net/v3/articles/count'
             quant_articles = int(requests.get(quant_url).content)
             len_articles_db = models.Article.objects.all().count()
-            if len_articles_db < quant_articles:
-                articles_url = f'https://api.spaceflightnewsapi.net/v3/articles?_limit={quant_articles-len_articles_db}'
+            if len_articles_db != quant_articles:
+                models.Article.objects.all().delete()
+                articles_url = f'https://api.spaceflightnewsapi.net/v3/articles?_limit={quant_articles}'
                 articles = json.loads(requests.get(articles_url).content)
                 
                 for article in articles:
@@ -48,6 +49,8 @@ class Command(BaseCommand):
                                 ))
                         new_article.events.set(new_events_list)
                         new_article.save()
+            else:
+                print('Every thing up to date!')
             print('Finished :)!!!')
         except Exception as e:
             print(e)

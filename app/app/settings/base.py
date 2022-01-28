@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': os.getenv('DB_HOST'),
@@ -97,6 +97,26 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASS')
     }
+} """
+
+DATABASES = {
+
+    'default': {
+
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+    'NAME': 'space_flight_news',
+
+    'USER': 'postgres',
+
+    'PASSWORD': 'Caralho500#',
+
+    'HOST': 'localhost',
+
+    'PORT': '5432',
+
+    }
+
 }
 
 # Password validation
