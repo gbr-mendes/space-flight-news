@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from core.import models
+from core import models
 
 sched = BlockingScheduler()
 
