@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'cloudinary',
     'cloudinary_storage',
+    'django_crontab',
     # Local Apps
     'core.apps.CoreConfig',
     'api.apps.ApiConfig',
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': os.getenv('DB_HOST'),
@@ -96,6 +97,26 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASS')
     }
+} """
+
+DATABASES = {
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'space_flight_news',
+
+        'USER': 'postgres',
+
+        'PASSWORD': 'Caralho500#',
+
+        'HOST': 'localhost',
+
+        'PORT': '5432',
+
+    }
+
 }
 
 
@@ -157,3 +178,9 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'core.User'
+
+CRONJOBS = [
+    ('*/1 * * * *', 'core.cron.request_articles',f'>> {BASE_DIR}/logfile.log')
+]
+
+CRONTAB_LOCK_JOBS = True

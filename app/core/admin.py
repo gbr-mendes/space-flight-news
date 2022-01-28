@@ -29,9 +29,7 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('id',)
 
 
-
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Article, ArticleAdmin)
 admin.site.register(models.Launch)
 admin.site.register(models.Event)
-admin.site.register(models.Test)
