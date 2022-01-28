@@ -1,10 +1,11 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
+from core.import models
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=3)
+@sched.scheduled_job('interval', minutes=1)
 def timed_job():
-    print('This job is run every three minutes.')
+    models.Test.objects.create(name='Teste')
 
 
 sched.start()
