@@ -1,2 +1,3 @@
-release: cd app && python3 manage.py migrate && python3 manage.py crontab add .
+release: cd app && python3 manage.py migrate
 web: sh -c 'cd ./app/ && gunicorn app.wsgi' --preload --log-file –
+clock: python clock.py

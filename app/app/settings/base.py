@@ -158,9 +158,3 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'core.User'
-
-CRONJOBS = [
-    ('*/1 * * * *', 'core.cron.request_articles',f'>> {BASE_DIR}/logfile.log')
-]
-
-CRONTAB_LOCK_JOBS = True
