@@ -9,6 +9,13 @@ This is a challenge by [@coodesh](https://coodesh.com/)
 
 - [@gabrielmendes](https://www.github.com/gbr-mendes)
 
+## Technologies used
+
+- Python language
+- Django framework
+- Django-Rest-Framework lib to build the API it self
+- Postgres Database on heroku
+
 
 ## Installation with Docker
 - Make sure that you have docker an docker-compose installed:
