@@ -18,6 +18,7 @@ class TestPublicAPIRequest(TestCase):
             "featured": True,
             "title": "Article one",
             "url": "https://www.google.com",
+            "imageUrl": "https://www.google.com.br/image",
             "newsSite": "Some News",
             "summary": "Some summary",
             "launches": [{"provider": "provider name1"},{"provider": "provider name2"}],
