@@ -24,6 +24,10 @@ This is a challenge by [@coodesh](https://coodesh.com/)
     - docker-compose --version
         - Expect output: docker-compose version 1.29.2, build 5becea4c
 
+- Make sure that the port 5432 is avaliable. You can stop the postgres process on ubunto with:
+    - sudo systemctl stop postgres
+    On windows just kill the process on task manager.
+
 - Clone this repo to somewhere on your computer:
     - git clone https://github.com/gbr-mendes/space-flight-news.git
 
@@ -31,6 +35,9 @@ This is a challenge by [@coodesh](https://coodesh.com/)
     - cd space-flight-news
 
 - Build the container
+    - docker-compose build
+
+- Run the application
     - docker-compose up
 
 - Access the application:
