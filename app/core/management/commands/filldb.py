@@ -12,7 +12,11 @@ class Command(BaseCommand):
             quant_articles = int(requests.get(quant_url).content)
             len_articles_db = models.Article.objects.all().count()
             if len_articles_db != quant_articles:
+                
                 models.Article.objects.all().delete()
+                models.Event.objects.all().delete()
+                models.Launch.objects.all().delete()
+                
                 articles_url = f'https://api.spaceflightnewsapi.net/v3/articles?_limit={quant_articles}'
                 articles = json.loads(requests.get(articles_url).content)
                 
