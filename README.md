@@ -57,7 +57,7 @@ This is a challenge by [@coodesh](https://coodesh.com/)
     - Go to app/app/settings/base.py and navigate to databases section
         - Comment the defined database config
         - Uncomment the database system that you want to use. You can use the dafault database system of dango(dbsqlite) or postgres in case you have it installed on your machine.
-    - Run python manage.py migrate
+    - Run cd app && python manage.py migrate
     - Run python manage.py runserver
     - Access your application - [127.0.0.1:8000](http://127.0.0.1:8000)
 
@@ -144,6 +144,14 @@ You can populate your database with either docker or virtualenv:
     - Re-run the container:
         - docker-compose up
 
+You can run the unit tests to make sure that everything is ok
+- virtualenv
+    - With your venv active run:
+        - python manage.py test
+
+- docker
+    - Stop your container and run:
+        - docker-compose run --rm app sh -c "python manage.py test"
 
 ## Atention
 
