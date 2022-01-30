@@ -13,7 +13,9 @@ def request_articles():
         if len_articles_db < quant_articles:
             articles_url = f'https://api.spaceflightnewsapi.net/v3/articles?_limit={quant_articles-len_articles_db}'
             articles = json.loads(requests.get(articles_url).content)
-            
+            models.Article.objects.all().delete()
+            models.Event.objects.all().delete()
+            models.Launch.objects.all().delete()
             for article in articles:
             
                 launches = article.pop('launches', None)
